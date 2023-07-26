@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>英文大小写转换工具</title>
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<meta name="keywords" content="英文大小写转换工具" />
+		<meta name="description" content="英文大小写转换工具" /> 
+		<meta name="author" content="sdg" />
+		<meta name="copyright" content="sdg" />
+		<link rel="icon" type="image/x-icon" href="https://houduan{$rthSuffix}/favicon.png" />
+		<style>
+			@charset "utf-8";
+			/* CSS Document */
+			* {
+				padding: 0;
+				margin-bottom: 0;
+				margin-left: 0;
+				margin-right: auto;
+				margin-top: 0;
+			}
+			body {
+				font: 12px Segoe, "微软雅黑";
+				background-color: #dedede; 
+				height: 100vh;
+			  background: url('https://houduan{$rthSuffix}/011530-16488333300281.jpg') fixed no-repeat;
+			  background-size: cover;
+			}
+			a { text-decoration: none; color: #c5e2f2; }
+			a:hover, a:focus { color: #d14836; text-decoration: underline; }
+			/*  header */
+			.header {
+				width: 980px;
+				margin-bottom: 0px;
+				margin-left: auto;
+				margin-right: auto;
+				margin-top: 10px;
+			}
+			.header h1{
+				text-shadow: 1px 1px #dedede;
+				font-weight: normal;
+				font-size: 20px;
+				color: #0088CF;
+				padding-bottom: 0px;
+				padding-left: 0;
+				padding-right: 0;
+				padding-top: 0px;
+			}
+			.header a{color: #0088CF;}
+			.header a:hover, a:focus { color: #d14836; text-decoration: underline; }
+			/*  nav */
+			.nav { background-color: #0080C1}
+			.nav table { width: 980px; margin: 10px auto; border: none; }
+			.nav table td a { overflow: hidden; text-align: center; display: block; color: #FFF; font-size: 13px; word-wrap: break-word; padding: 10px 0; }
+			.nav table td a:hover {
+				color: #FFF;
+				background-color: #0075AF;
+				text-shadow: 1px 1px #666666;
+			}
+			.nav table.nav a.fantizi:hover { background-color: #005986; }
+			/*  show */
+			.show{width: 968px;background:#FFF;padding:5px; margin: 10px auto; border: 1px solid #878787;}
+			.show .tip{border:none;color: #FFF;font-size: 12px;}
+			
+			.layout { width: 980px; margin: 0px auto; }
+			/*  layout>form */
+		
+			.tip {
+				background: #0080C1 no-repeat 8px 12px;
+				border: 1px solid #878787;
+				text-indent: 18px;
+				padding-bottom: 10px;
+				padding-left: 10px;
+				padding-right: 10px;
+				padding-top: 10px;
+			}
+			.tip p { color: #FFF;font-size: 12px;}
+
+			
+			.daxiao .btnname1 {
+				PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 0px; PADDING-TOP: 5px
+			}
+			.daxiao .but20 {
+				BORDER-BOTTOM: #878787 1px solid;
+				BORDER-LEFT: #878787 1px solid;
+				WIDTH: 90px;
+				MARGIN-BOTTOM: 5px;
+				BACKGROUND: url("../images/but.gif") #c5e2f2 repeat-x 50% top;
+				HEIGHT: 30px;
+				MARGIN-LEFT: 60px;
+				BORDER-TOP: #878787 1px solid;
+				CURSOR: pointer;
+				BORDER-RIGHT: #878787 1px solid;
+			}
+			footer .mg-footer-copyright {
+				background: #090818;
+			}
+			footer .mg-footer-copyright {
+				padding: 25px 0;
+			}
+			*, *::before, *::after {
+				box-sizing: border-box;
+			}
+			#footer {
+			  position: absolute;
+			  width: 100%;
+			  top: 65%;
+			  margin: auto;
+			  margin-top: 120px;
+			  font-family: "Open Sans", sans-serif;
+			  color: #fdde8c;
+			  font-size: 0.8em;
+			  text-transform: uppercase;
+			  text-align: center;
+			  line-height: 1.5;
+			  user-select: none;
+			}
+			@media screen and (max-width:750px) {
+			  #footer {
+				top: 60%;
+			  }
+			}
+			@media screen and (max-width:470px) {
+			  #footer {
+				top: 60%;
+			  }
+			}
+			textarea {
+				-webkit-writing-mode: horizontal-tb !important;
+				text-rendering: auto;
+				color: -internal-light-dark(black, white);
+				letter-spacing: normal;
+				word-spacing: normal;
+				text-transform: none;
+				text-indent: 0px;
+				text-shadow: none;
+				display: inline-block;
+				text-align: start;
+				appearance: auto;
+				background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+				-webkit-rtl-ordering: logical;
+				flex-direction: column;
+				resize: auto;
+				cursor: text;
+				white-space: pre-wrap;
+				overflow-wrap: break-word;
+				column-count: initial !important;
+				margin: 0em;
+				margin-top: 0em;
+				margin-right: 0em;
+				margin-bottom: 0em;
+				margin-left: 0em;
+				font: 400 13.3333px Arial;
+				border-width: 1px;
+				border-style: solid;
+				border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+				border-image: initial;
+				padding: 2px;
+				width: 800px;
+			}
+			#haiyong {
+				color: #dcce1f;
+				font-size: 16px;
+				font-weight: bold;
+				margin-top: 10px;
+			}
+			
+			@media screen and (max-width:980px) {
+			  textarea {
+				margin-right: 12em;
+				width: 700px;
+			  }
+			  #haiyong p {
+				margin-right: 5em;
+			  }
+			}
+			@media screen and (max-width:800px) {
+			  textarea {
+				margin-right: 20em;
+				width: 600px;
+			  }
+			  #haiyong p {
+				margin-right: 10em;
+			  }
+			}
+			@media screen and (max-width:700px) {
+			  textarea {
+				margin-right: 30em;
+				width: 500px;
+			  }
+			  #haiyong p {
+				margin-right: 15em;
+			  }
+			}
+			@media screen and (max-width:600px) {
+			  textarea {
+				margin-right: 35em;
+				width: 400px;
+			  }
+			  #haiyong p {
+				margin-right: 30em;
+			  }
+			}
+			@media screen and (max-width:500px) {
+			  textarea {
+				margin-right: 40em;
+				width: 300px;
+			  }
+			  #haiyong p {
+				margin-right: 35em;
+			  }
+			  .daxiao .but20 {
+				WIDTH: 70px;
+				MARGIN-LEFT: 40px;
+			  }
+			  .daxiao .btnname1{
+				PADDING-LEFT: 30px;
+			  }
+			}
+			@media screen and (max-width:400px) {
+			  textarea {
+				margin-right: 48em;
+				width: 30%;
+			  }
+			  #haiyong p {
+				margin-right: 43em;
+			  }
+			  .daxiao .btnname1{
+				PADDING-LEFT: 0px;
+			  }
+			  .daxiao .but20{
+				MARGIN-LEFT: 20px;
+			  }
+			}
+			.page-footer {
+			  position: fixed;
+			  right: 0;
+			  bottom: 20px;
+			  display: flex;
+			  align-items: center;
+			  padding: 5px;
+			  color: black;
+			  background: rgba(255, 255, 255, 0.65);
+			}
+			
+			.page-footer a {
+			  display: flex;
+			  margin-left: 4px;
+			}
+			.touxiang{
+				width:24px;
+				height:24px;
+			}
+
+		</style>
+		<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?a9430a37066911650e26adadcc42798a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script></head>
+	<body>
+		<!--英文大小写转换工具-->
+		<div class="main">
+		  <div class="content">
+		    <div class="tip"><p align="center">英文大小写转换工具：输入或复制你想转换的文字到表格内容栏里点击转化按钮↓↓↓</p></div>
+		    <div class="echo"></div>
+		  </div>
+		  
+		</div>
+		
+		<div class="layout"> 
+		  <div class="form">
+		  <div class="daxiao">
+		            <div id="haiyong" ><p align="center">英文大小写转换、首字母大写转换</p></div><form name="wawa" id="wawa">
+		                    <div align="center" style="padding-top:10px;">
+     <textarea id="str" name="str" cols="20" rows="20" >sdg</textarea>
+
+							</div>
+		    
+		                    <div class="btnname1">
+		                        <input class="but20" type="button" value="转换成大写" onclick="Ubig(this.form.str)"/>
+		                        <input class="but20" type="button" value="转换成小写" onclick="Usmall(this.form.str)" />
+		                        <input class="but20" type="button" value="首字母大写" onclick="Ufirst(this.form.str)" />
+		</form>
+		               </div>
+		         </div>
+		     </div>
+		</div>
+		<footer class="page-footer">
+		  <span>made by </span>
+		  <a href="sdg{$rthSuffix}" target="_blank">
+		    <img class="touxiang"  src="https://houduan{$rthSuffix}/favicon.png" alt="George Martsoukos logo">
+		  </a>
+		</footer>
+	</body>
+	
+	<script>
+		var index, tmpStr, tmpChar, preString, postString, strlen;
+		function Ufirst(a) {
+		  tmpStr = a.value.toLowerCase();
+		  strLen = tmpStr.length;
+		  if (strLen > 0)
+		    for (index = 0; index < strLen; index++)
+		      if (index == 0) {
+		        tmpChar = tmpStr.substring(0, 1).toUpperCase();
+		        postString = tmpStr.substring(1, strLen);
+		        tmpStr = tmpChar + postString;
+		      } else {
+		        tmpChar = tmpStr.substring(index, index + 1);
+		        if (tmpChar == " " && index < strLen - 1) {
+		          tmpChar = tmpStr.substring(index + 1, index + 2).toUpperCase();
+		          preString = tmpStr.substring(0, index + 1);
+		          postString = tmpStr.substring(index + 2, strLen);
+		          tmpStr = preString + tmpChar + postString;
+		        }
+		      }
+		  a.value = tmpStr;
+		}
+		function Usmall(a) {
+		  tmpStr = a.value.toLowerCase();
+		  a.value = tmpStr;
+		}
+		function Ubig(a) {
+		  tmpStr = a.value.toUpperCase();
+		  a.value = tmpStr;
+		}
+		function copy(a) {
+		  if ((a = findObj(a))) {
+		    a.select();
+		    js = a.createTextRange();
+		    js.execCommand("Copy");
+		  }
+		}
+		function cut(a) {
+		  if ((a = findObj(a))) {
+		    a.select();
+		    js = a.createTextRange();
+		    js.execCommand("Cut");
+		  }
+		}
+		function findObj(a, b) {
+		  var c, d;
+		  b || (b = document);
+		  if ((c = a.indexOf("?")) > 0 && parent.frames.length) {
+		    b = parent.frames[a.substring(c + 1)].document;
+		    a = a.substring(0, c);
+		  }
+		  if (!(d = b[a]) && b.all) d = b.all[a];
+		  for (c = 0; !d && c < b.forms.length; c++) d = b.forms[c][a];
+		  for (c = 0; !d && b.layers && c < b.layers.length; c++)
+		    d = findObj(a, b.layers[c].document);
+		  if (!d && document.getElementById) d = document.getElementById(a);
+		  return d;
+		}
+		function paste(a) {
+		  tmpStr = window.clipboardData.getData("text");
+		  a.value = a.value + tmpStr;
+		}
+		var _hmt = _hmt || [];
+		(function () {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?19ec2b38fb53d16a4115686054b1363e";
+		  var s = document.getElementsByTagName("script")[0];
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+</html>
