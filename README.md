@@ -1,1 +1,1 @@
- https://sdg1026.rth1.app
+## https://sdg.rth1.app
