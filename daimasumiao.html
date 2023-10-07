@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+
+<head>
+<title>代码素描</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="keywords" content="sdg，游戏" />
+		<meta name="description" content="代码素描" /> 
+		<meta name="author" content="sdg" />
+		<meta name="copyright" content="sdg" />
+		<link rel="icon" href="./index.jpg"/>
+    <meta charset="utf-8" />
+    <style>
+        body {
+    	padding: 50px;
+    	background: white;
+    	color: black;
+    }
+    
+    h1 {
+    	font-family: 'Helvetica neue', 'Helvetica', 'Arial', sans-serif;
+    	font-size: 48px;
+    	font-weight: 300;
+    	color: #999;
+    	text-align: center;
+    }
+    
+    #notSupported {
+    	display: none;
+    }
+    
+    #notSupported h1 {
+    	color: #b41a1a;
+    	margin-bottom: 20px;
+    }
+    
+    #notSupported img {
+    	display: block;
+    	margin: 0 auto;
+    }
+    
+    #ascii {
+    	font-family: 'Courier New', 'Courier', monospace;
+    	font-size: 10px;
+    	line-height: 10px;
+    	letter-spacing: -1.5px;
+    	text-align: center;
+    }
+    #button {
+	display: none;
+	margin: 20px auto;
+	padding: 10px 20px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 18px;
+}
+    </style>
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?a9430a37066911650e26adadcc42798a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script></head>
+
+<body>
+    <h1 id="info">请允许使用你的摄像头.</h1>
+
+    <div id="notSupported">
+        <h1>Your browser does not support the Camera API.</h1>
+
+    </div>
+
+    <pre id="ascii"></pre>
+    <button id="button">开始</button>
+
+    <script type="text/javascript" src="https://repo.bfw.wiki/bfwrepo/js/camera.1.1.js"></script>
+    <script type="text/javascript" src="https://repo.bfw.wiki/bfwrepo/js/ascii.js"></script>
+    <script>
+        (function() {
+        	var asciiContainer = document.getElementById("ascii");
+        	var capturing = false;
+        
+        	camera.init({
+        		width: 160,
+        		height: 120,
+        		fps: 30,
+        		mirror: true,
+        
+        		onFrame: function(canvas) {
+        			ascii.fromCanvas(canvas, {
+        				// contrast: 128,
+        				callback: function(asciiString) {
+        					asciiContainer.innerHTML = asciiString;
+        				}
+        			});
+        		},
+        
+        		onSuccess: function() {
+        			document.getElementById("info").style.display = "none";
+        
+        			const button = document.getElementById("button");
+        			button.style.display = "block";
+        			button.onclick = function() {
+        				if (capturing) {
+        					camera.pause();
+        					button.innerText = '恢复';
+        				} else {
+        					camera.start();
+        					button.innerText = '拍照';
+        				}
+        				capturing = !capturing;
+        			};
+        		},
+        
+        		onError: function(error) {
+        			// TODO: log error
+        		},
+        
+        		onNotSupported: function() {
+        			document.getElementById("info").style.display = "none";
+        			asciiContainer.style.display = "none";
+        			document.getElementById("notSupported").style.display = "block";
+        		}
+        	});
+        })();
+    </script>
+</body>
+
+</html>
